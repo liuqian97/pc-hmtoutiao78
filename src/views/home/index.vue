@@ -118,11 +118,6 @@ export default {
       vertical-align: middle;
       color: #74787c;
     }
-    .el-icon-s-unfold {
-        font-size: 24px;
-        vertical-align: middle;
-        color: #74787c;
-    }
     .text {
       vertical-align: middle;
       margin-left: 10px;
