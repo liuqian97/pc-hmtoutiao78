@@ -20,7 +20,7 @@
           <i class="el-icon-s-home"></i>
           <span slot="title">首页</span>
         </el-menu-item>
-        <el-menu-item index="/article">
+        <el-menu-item index="/article" @click='art()'>
           <i class="el-icon-document"></i>
           <span slot="title">内容管理</span>
         </el-menu-item>
@@ -82,6 +82,11 @@ export default {
   methods: {
     toggleMenu () {
       this.isCollapse = !this.isCollapse
+    },
+    art () {
+      this.$http.get('http://ttapi.research.itcast.cn/mp/v1_0/user/profile').then(res => {
+        console.log(res.data)
+      })
     }
   }
 }

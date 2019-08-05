@@ -6,6 +6,7 @@ import Welcome from '@/views/welcome/index.vue'
 import Article from '@/views/article/index.vue'
 import Image from '@/views/images/index.vue'
 import notFound from '@/views/404/index.vue'
+import store from '@/store'
 
 Vue.use(VueRouter)
 const router = new VueRouter({
@@ -40,6 +41,12 @@ const router = new VueRouter({
       component: notFound
     }
   ]
+})
+
+// 加上全局前置导航守卫
+router.beforeEach((to, from, next) => {
+  if (to.path !== '/login' && !store.getUser().token) return next('/login')
+  next()
 })
 
 export default router
