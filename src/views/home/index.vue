@@ -53,13 +53,13 @@
         <!-- 下拉菜单 -->
         <el-dropdown class="myDropdown">
           <span class="el-dropdown-link">
-            <img src="../../assets/images/lixian.png" alt />
-            用户名
+            <img :src='photo' alt />
+            {{name}}
             <i class="el-icon-arrow-down el-icon--right"></i>
           </span>
           <el-dropdown-menu slot="dropdown">
-            <el-dropdown-item icon="el-icon-setting">个人设置</el-dropdown-item>
-            <el-dropdown-item icon="el-icon-unlock">退出登录</el-dropdown-item>
+            <el-dropdown-item icon="el-icon-setting" @click.native="setting()">个人设置</el-dropdown-item>
+            <el-dropdown-item icon="el-icon-unlock" @click.native="logout()">退出登录</el-dropdown-item>
           </el-dropdown-menu>
         </el-dropdown>
       </el-header>
@@ -72,11 +72,14 @@
 </template>
 
 <script>
+import store from '@/store'
 export default {
   data () {
     return {
       // element-ui提供的iscollapse属性控制菜单栏是否折叠,false表示展开,true表示折叠
-      isCollapse: false
+      isCollapse: false,
+      name: '',
+      photo: ''
     }
   },
   methods: {
@@ -87,7 +90,21 @@ export default {
       this.$http.get('http://ttapi.research.itcast.cn/mp/v1_0/user/profile').then(res => {
         console.log(res.data)
       })
+    },
+    setting () {
+      this.$router.push('/setting')
+    },
+    logout () {
+      // 清除用户信息
+      store.removeUser()
+      // 跳转到登录页面
+      this.$router.push('/login')
     }
+  },
+  created () {
+    const user = store.getUser()
+    this.name = user.name
+    this.photo = user.photo
   }
 }
 </script>

@@ -68,15 +68,16 @@ export default {
       // validate是对象整个表单进行验证
       // 获取其他组件里的函数,要通过dom对象调用
       // this.$message.error是element-ui提供的方法,可以button传入不同type值时,调用
-      this.$refs.loginForm.validate(valid => {
+      this.$refs.loginForm.validate(async valid => {
         if (valid) {
-          this.$http.post('http://ttapi.research.itcast.cn/mp/v1_0/authorizations', this.loginForm).then(result => {
-            // 将用户信息存在本地sessionStorage
-            store.setUser(result.data.data)
+          // try{ 可能会执行报错代码 }catch(e){ 处理错误 }
+          try {
+            const { data: { data } } = await this.$http.post('authorizations', this.loginForm)
+            store.setUser(data)
             this.$router.push('/')
-          }).catch(() => {
-            this.$message.error('手机号或者验证码错误')
-          })
+          } catch (e) {
+            this.$message.error('手机号或者密码错误')
+          }
         }
       })
     }

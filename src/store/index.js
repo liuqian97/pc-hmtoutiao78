@@ -13,5 +13,9 @@ export default {
   // 获取用户信息函数
   getUser () {
     return JSON.parse(window.sessionStorage.getItem(KEY) || '{}')
+  },
+  // 删除用户信息函数
+  removeUser () {
+    return window.sessionStorage.removeItem(KEY)
   }
 }
