@@ -46,8 +46,8 @@ export default {
     }
     return {
       loginForm: {
-        mobile: '13662019984',
-        code: '246810'
+        mobile: '',
+        code: ''
       },
       loginRules: {
         mobile: [
@@ -74,6 +74,7 @@ export default {
           try {
             const { data: { data } } = await this.$http.post('authorizations', this.loginForm)
             store.setUser(data)
+            store.setName(data.name)
             this.$router.push('/')
           } catch (e) {
             this.$message.error('手机号或者密码错误')
@@ -81,6 +82,9 @@ export default {
         }
       })
     }
+  },
+  created () {
+    this.loginForm.mobile = store.getName()
   }
 }
 </script>
