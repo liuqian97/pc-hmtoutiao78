@@ -7,6 +7,7 @@ import Article from '@/views/article/index.vue'
 import Image from '@/views/images/index.vue'
 import notFound from '@/views/404/index.vue'
 import Publish from '@/views/publish/index.vue'
+import Comment from '@/views/comment/index.vue'
 import store from '@/store'
 
 Vue.use(VueRouter)
@@ -38,6 +39,11 @@ const router = new VueRouter({
           path: '/publish',
           name: 'publish',
           component: Publish
+        },
+        {
+          path: '/comment',
+          name: 'comment',
+          component: Comment
         }
       ]
     },
