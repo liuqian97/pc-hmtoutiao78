@@ -9,7 +9,9 @@ export default {
   // 设置用户信息函数
   setUser (user) {
     // 存储user对象数据
-    window.sessionStorage.setItem(KEY, JSON.stringify(user))
+    const localUser = this.getUser()
+    const newUser = { ...localUser, ...user }
+    window.sessionStorage.setItem(KEY, JSON.stringify(newUser))
   },
   // 获取用户信息函数
   getUser () {
