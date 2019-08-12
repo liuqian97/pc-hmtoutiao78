@@ -9,6 +9,7 @@ import notFound from '@/views/404/index.vue'
 import Publish from '@/views/publish/index.vue'
 import Comment from '@/views/comment/index.vue'
 import Setting from '@/views/setting/index.vue'
+import Fans from '@/views/fans/index.vue'
 
 import store from '@/store'
 
@@ -51,6 +52,11 @@ const router = new VueRouter({
           path: '/setting',
           name: 'setting',
           component: Setting
+        },
+        {
+          path: '/fans',
+          name: 'fans',
+          component: Fans
         }
       ]
     },
